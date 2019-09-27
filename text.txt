@@ -1,0 +1,599 @@
+procedure Form1.button1_Click(sender: Object; e: EventArgs);
+var
+  vek,god,i,raznica,mod1,mod2,mod3,mod4,mod5,temp,a,b,dy,dg,temp1,temp2:integer;
+begin
+  if (textBox1.Text <> '') and (textBox2.Text <> '') then
+  begin
+  vek := strtoint (textBox1.Text);
+  god := strtoint (textBox2.Text);
+  if (god div 100 = vek-1) and (vek >= 16) then
+    begin
+    raznica := 10;
+    for i:=16 to vek-1 do
+		  begin
+		  if i mod 4 > 0 then
+			  raznica := raznica+1;
+		  end;
+		textBox3.Text := inttostr (raznica);
+		end
+	else
+	  if (god div 100 > vek-1) or (god div 100 < vek-1) then
+	    textBox2.Text := 'Год не соответствует веку!';
+	  if vek < 16 then
+	    textBox1.Text := 'Век должен быть >=16!';
+  mod1:=(19*(god mod 19))+15;
+	mod2:=mod1 mod 30;
+	a:=mod2;
+	mod3:=2*(god mod 4);
+	mod4:=4*(god mod 7);
+	temp:=mod3+mod4+(6*a)+6;
+	mod5:=temp mod 7;
+	b:=mod5;
+	if a+b>9 then
+		begin
+		dy:=a+b-9;
+		textBox4.Text := inttostr (dy) + ' апреля.';
+		dg:=dy+raznica;
+		if dg>30 then
+			begin
+			dg:=dg-30;
+			textBox5.Text := inttostr (dg) + ' мая.';
+			temp:=dg-7;
+			if temp=0 then
+				begin
+				textBox6.Text := inttostr (30-raznica) + ' апреля.';
+				textBox7.Text := '30 апреля.';
+				end;
+			if temp<0 then
+				begin
+				textBox6.Text := inttostr (30+temp-raznica) + ' апреля.';
+				textBox7.Text := inttostr (30+temp) + ' апреля.';
+				end;
+			if temp>0 then
+				begin
+				if temp-raznica=0 then
+				textBox6.Text := '30 апреля.';
+				if (temp-raznica)>0 then
+				textBox6.Text := inttostr (temp-raznica) + ' мая.';
+				if (temp-raznica)<0 then
+				textBox6.Text := inttostr (30+temp-raznica) + ' апреля.';
+				textBox7.Text := inttostr (temp) + ' мая.';
+				end;
+			temp1:=dg+40;
+			temp1:=temp1-31;
+			if temp1<30 then
+				begin
+				if temp1-1-raznica>0 then
+				textBox8.Text := inttostr (temp1-1-raznica) + ' июня.';
+				if temp1-1-raznica=0 then
+				textBox8.Text := '31 мая.';
+				if temp1-1-raznica<0 then
+				textBox8.Text := inttostr (31+(temp1-1-raznica)) + ' мая.';
+				textBox9.Text := inttostr (temp1-1) + ' июня.';
+				end;
+			if temp1=30 then
+				begin
+				textBox8.Text := inttostr (30-1-raznica) + ' июня.';
+				textBox9.Text := inttostr (30-1) + ' июня.';
+				end;
+			if temp1>30 then
+				begin
+				if temp1=1 then
+					begin
+					textBox8.Text := inttostr (30-raznica) + ' июня.';
+					textBox9.Text := '30 июня.'
+					end
+				else
+					begin
+					if temp1-30-1-raznica>0 then
+					textBox8.Text := inttostr (temp1-30-1-raznica) + ' июля.';
+					if temp1-30-1-raznica=0 then
+					textBox8.Text := '30 июня.';
+					if temp1-30-1-raznica<0 then
+					textBox8.Text := inttostr (30+(temp1-30-1-raznica)) + ' июня.';
+					textBox9.Text := inttostr (temp1-30-1) + ' июля.';
+					end;
+				end;
+			temp2:=dg+50;
+			temp2:=temp2-31;
+			if temp2>30 then
+				begin
+				temp2:=temp2-30;
+				if temp2=1 then
+					begin
+					textBox10.Text := inttostr (30-raznica) + ' июня.';
+					textBox11.Text := '30 июня.';
+					end
+				else
+					begin
+					if temp2-1-raznica>0 then
+					textBox10.Text := inttostr (temp2-1-raznica) + ' июля.';
+					if temp2-1-raznica=0 then
+					textBox10.Text := '30 июня.';
+					if temp2-1-raznica<0 then
+					textBox10.Text := inttostr (30+(temp2-1-raznica)) + ' июня.';
+					textBox11.Text := inttostr (temp2-1) + ' июля.';
+					end;
+				end
+			else
+				begin
+				if temp2=30 then
+					begin
+					textBox10.Text := inttostr (30-1-raznica) + ' июня.';
+					textBox11.Text := inttostr (30-1) + ' июня.';
+					end
+				else
+					begin
+					if temp2-1-raznica>0 then
+					textBox10.Text := inttostr (temp2-1-raznica) + ' июня.';
+					if temp2-1-raznica=0 then
+					textBox10.Text := '31 мая.';
+					if temp2-1-raznica<0 then
+					textBox10.Text := inttostr (31+(temp2-1-raznica)) + ' мая.';
+					textBox11.Text := inttostr (temp2-1) + ' июня.';
+					end;
+				end;
+			temp2:=dg+50;
+			temp2:=temp2-31;
+			if temp2>30 then
+				begin
+				temp2:=temp2-30;
+				if temp2=1 then
+					begin
+					textBox12.Text := inttostr (30+(1-raznica)) + ' июня.';
+					textBox13.Text := '1 июля.';
+					end
+				else
+					begin
+					if temp2-raznica>0 then
+					textBox12.Text := inttostr (temp2-raznica) + ' июля.';
+					if temp2-raznica=0 then
+					textBox12.Text := '30 июня.';
+					if temp2-raznica<0 then
+					textBox12.Text := inttostr (30+(temp2-raznica)) + ' июня.';
+					textBox13.Text := inttostr (temp2) + ' июля.';
+					end;
+				end
+			else
+				begin
+				if temp2=30 then
+					begin
+					textBox12.Text := inttostr (30-raznica) + ' июня.';
+					textBox13.Text := inttostr (30) + ' июня.';
+					end
+				else
+					begin
+					if temp2-raznica>0 then
+					textBox12.Text := inttostr (temp2-raznica) + ' июня.';
+					if temp2-raznica=0 then
+					textBox12.Text := '31 мая.';
+					if temp2-raznica<0 then
+					textBox12.Text := inttostr (31+(temp2-raznica)) + ' мая.';
+					textBox13.Text := inttostr (temp2) + ' июня.';
+					end;
+				end;
+			end
+		else
+			begin
+			textBox5.Text := inttostr (dg) + ' апреля.';
+			temp:=dg-7;
+			if temp=0 then
+				begin
+				textBox6.Text := inttostr (31-raznica) + ' марта.';
+				textBox7.Text := '31 марта.';
+				end;
+			if temp>0 then
+				begin
+				if (temp-raznica)=0 then
+				textBox6.Text := '31 марта.';
+				if (temp-raznica)>0 then
+				textBox6.Text := inttostr (temp-raznica) + ' апреля.';
+				if (temp-raznica)<0 then
+				textBox6.Text := inttostr (31+(temp-raznica)) + ' марта.';
+				textBox7.Text := inttostr (temp) + ' апреля.';
+				end;
+			if temp<0 then
+				begin
+				textBox6.Text := inttostr ((31+temp)-raznica) + ' марта.';
+				textBox7.Text := inttostr (31+temp) + ' марта.';
+				end;
+			temp1:=dg+40;
+			temp1:=temp1-30;
+			if temp1<31 then
+				begin
+				if temp1-1-raznica<0 then
+				textBox8.Text := inttostr (30+(temp1-1-raznica)) + ' апреля.';
+				if temp1-1-raznica=0 then
+				textBox8.Text := '30 апреля.';
+				if temp1-1-raznica>0 then
+				textBox8.Text := inttostr (temp1-1-raznica) + ' мая.';
+				textBox9.Text := inttostr (temp1-1) + ' мая.';
+				end;
+			if temp1=31 then
+				begin
+				textBox8.Text := inttostr (31-1-raznica) + ' мая.';
+				textBox9.Text := inttostr (31-1) + ' мая.';
+				end;
+			if temp1>31 then
+				begin
+				if temp1-31=1 then
+					begin
+					textBox8.Text := inttostr (31-raznica) + ' мая.';
+					textBox9.Text := '31 мая.';
+					end
+				else
+					begin
+					if temp1-31-1-raznica>0 then
+					textBox8.Text := inttostr (temp1-31-1-raznica) + ' июня.';
+					if temp1-31-1-raznica=0 then
+					textBox8.Text := '31 мая.';
+					if temp1-31-1-raznica<0 then
+					textBox8.Text := inttostr (31+(temp1-31-1-raznica)) + ' мая.';
+					textBox9.Text := inttostr (temp1-31-1) + ' июня.';
+					end;
+				end;
+			temp2:=dg+50;
+			temp2:=temp2-30;
+			if temp2>31 then
+				begin
+				temp2:=temp2-31;
+				if temp2=1 then
+					begin
+					textBox10.Text := inttostr (31-raznica) + ' мая.';
+					textBox11.Text := '31 мая.';
+					end
+				else
+					begin
+					if temp2-1-raznica>0 then
+					textBox10.Text := inttostr (temp2-1-raznica) + ' июня.';
+					if temp2-1-raznica=0 then
+					textBox10.Text := '31 мая.';
+					if temp2-1-raznica<0 then
+					textBox10.Text := inttostr (31+(temp2-1-raznica)) + ' мая.';
+					textBox11.Text := inttostr (temp2-1) + ' июня.';
+					end;
+				end
+			else
+				begin
+				if temp2=31 then
+					begin
+					textBox10.Text := inttostr (31-1-raznica) + ' мая.';
+					textBox11.Text := inttostr (31-1) + ' мая.';
+					end
+				else
+					begin
+					if temp2-1-raznica>0 then
+					textBox10.Text := inttostr (temp2-1-raznica) + ' мая.';
+					if temp2-1-raznica=0 then
+					textBox10.Text := '30 апреля.';
+					if temp2-1-raznica<0 then
+					textBox10.Text := inttostr (30+(temp2-1-raznica)) + ' апреля.';
+					textBox11.Text := inttostr (temp2-1) + ' мая.';
+					end;
+				end;
+			temp2:=dg+50;
+			temp2:=temp2-30;
+			if temp2>31 then
+				begin
+				temp2:=temp2-31;
+				if temp2=1 then
+					begin
+					textBox12.Text := inttostr (31+(1-raznica)) + ' мая.';
+					textBox13.Text := '1 июня.';
+					end
+				else
+					begin
+					if temp2-raznica>0 then
+					textBox12.Text := inttostr (temp2-raznica) + ' июня.';
+					if temp2-raznica=0 then
+					textBox12.Text := '31 мая.';
+					if temp2-raznica<0 then
+					textBox12.Text := inttostr (31+(temp2-raznica)) + ' мая.';
+					textBox13.Text := inttostr (temp2) + ' июня.';
+					end;
+				end
+			else
+				begin
+				if temp2=31 then
+					begin
+					textBox12.Text := inttostr (31-raznica) + ' мая.';
+					textBox13.Text := inttostr (31) + ' мая.';
+					end
+				else
+					begin
+					if temp2-raznica>0 then
+					textBox12.Text := inttostr (temp2-raznica) + ' мая.';
+					if temp2-raznica=0 then
+					textBox12.Text := '30 апреля.';
+					if temp2-raznica<0 then
+					textBox12.Text := inttostr (30+(temp2-raznica)) + ' апреля.';
+					textBox13.Text := inttostr (temp2) + ' мая.';
+					end;
+				end;
+			end;
+		end;
+	if a+b<=9 then
+		begin
+		dy:=22+a+b;
+		textBox4.Text := inttostr (dy) + ' марта.';
+		dg:=dy+raznica;
+		if dg>31 then
+			begin
+			dg:=dg-31;
+			textBox5.Text := inttostr (dg) + ' апреля.';
+			temp:=dg-7;
+			if temp=0 then
+				begin
+				textBox6.Text := inttostr (31-raznica) + ' марта.';
+				textBox7.Text := '31 марта.';
+				end;
+			if temp >0 then
+				begin
+				if (temp-raznica)=0 then
+				textBox6.Text := '31 марта.';
+				if (temp-raznica)>0 then
+				textBox6.Text := inttostr (temp-raznica) + ' апреля.';
+				if (temp-raznica)<0 then
+				textBox6.Text := inttostr (31+(temp-raznica)) + ' марта.';
+				textBox7.Text := inttostr (temp) + ' апреля.';
+				end;
+			if temp<0 then
+				begin
+				textBox6.Text := inttostr ((31+temp)-raznica) + ' марта.';
+				textBox7.Text := inttostr (31+temp) + ' марта.';
+				end;
+			temp1:=dg+40;
+			temp1:=temp1-30;
+			if temp1<31 then
+				begin
+				if temp1-1-raznica<0 then
+				textBox8.Text := inttostr (30+(temp1-1-raznica)) + ' апреля.';
+				if temp1-1-raznica=0 then
+				textBox8.Text := '30 апреля.';
+				if temp1-1-raznica>0 then
+				textBox8.Text := inttostr (temp1-1-raznica) + ' мая.';
+				textBox9.Text := inttostr (temp1-1) + ' мая.';
+				end;
+			if temp1=31 then
+				begin
+				textBox8.Text := inttostr (31-1-raznica) + ' мая.';
+				textBox9.Text := inttostr (31-1) + ' мая.';
+				end;
+			if temp1>31 then
+				begin
+				if temp1-31=1 then
+					begin
+					textBox8.Text := inttostr (31-raznica) + ' мая.';
+					textBox9.Text := '31 мая.';
+					end
+				else
+					begin
+					if temp1-31-1-raznica>0 then
+					textBox8.Text := inttostr (temp1-31-1-raznica) + ' июня.';
+					if temp1-31-1-raznica=0 then
+					textBox8.Text := '31 мая.';
+					if temp1-31-1-raznica<0 then
+					textBox8.Text := inttostr (31+(temp1-31-1-raznica)) + ' мая.';
+					textBox9.Text := inttostr (temp1-31-1) + ' июня.';
+					end;
+				end;
+			temp2:=dg+50;
+			temp2:=temp2-30;
+			if temp2>31 then
+				begin
+				temp2:=temp2-31;
+				if temp2=1 then
+					begin
+					textBox10.Text := inttostr (31-raznica) + ' мая.';
+					textBox11.Text := '31 мая.';
+					end
+				else
+					begin
+					if temp2-1-raznica>0 then
+					textBox10.Text := inttostr (temp2-1-raznica) + ' июня.';
+					if temp2-1-raznica=0 then
+					textBox10.Text := '31 мая.';
+					if temp2-1-raznica<0 then
+					textBox10.Text := inttostr (31+(temp2-1-raznica)) + ' мая.';
+					textBox11.Text := inttostr (temp2-1) + ' июня.';
+					end;
+				end
+			else
+				begin
+				if temp2=31 then
+					begin
+					textBox10.Text := inttostr (31-1-raznica) + ' мая.';
+					textBox11.Text := inttostr (31-1) + ' мая.';
+					end
+				else
+					begin
+					if temp2-1-raznica>0 then
+					textBox10.Text := inttostr (temp2-1-raznica) + ' мая.';
+					if temp2-1-raznica=0 then
+					textBox10.Text := '30 апреля.';
+					if temp2-1-raznica<0 then
+					textBox10.Text := inttostr (30+(temp2-1-raznica)) + ' апреля.';
+					textBox11.Text := inttostr (temp2-1) + ' мая.';
+					end;
+				end;
+			temp2:=dg+50;
+			temp2:=temp2-30;
+			if temp2>31 then
+				begin
+				temp2:=temp2-31;
+				if temp2=1 then
+					begin
+					textBox12.Text := inttostr (31+(1-raznica)) + ' мая.';
+					textBox13.Text := '1 июня.';
+					end
+				else
+					begin
+					if temp2-raznica>0 then
+					textBox12.Text := inttostr (temp2-raznica) + ' июня.';
+					if temp2-raznica=0 then
+					textBox12.Text := '31 мая.';
+					if temp2-raznica<0 then
+					textBox12.Text := inttostr (31+(temp2-raznica)) + ' мая.';
+					textBox13.Text := inttostr (temp2) + ' июня.';
+					end;
+				end
+			else
+				begin
+				if temp2=31 then
+					begin
+					textBox12.Text := inttostr (31-raznica) + ' мая.';
+					textBox13.Text := inttostr (31) + ' мая.';
+					end
+				else
+					begin
+					if temp2-raznica>0 then
+					textBox12.Text := inttostr (temp2-raznica) + ' мая.';
+					if temp2-raznica=0 then
+					textBox12.Text := '30 апреля.';
+					if temp2-raznica<0 then
+					textBox12.Text := inttostr (30+(temp2-raznica)) + ' апреля.';
+					textBox13.Text := inttostr (temp2) + ' мая.';
+					end;
+				end;
+			end
+		else
+			begin
+			textBox5.Text := inttostr (dg) + ' марта.';
+			temp:=dg-7;
+			if raznica>=15 then
+				begin
+				if god mod 4=0 then
+				textBox6.Text := inttostr (29+(temp-raznica)) + ' fevralya.'
+				else
+				textBox6.Text := inttostr (28+(temp-raznica)) + ' fevralya.';
+				end
+			else
+			textBox6.Text := inttostr (temp-raznica) + ' марта.';
+			textBox7.Text := inttostr (temp) + ' марта.';
+			temp1:=dg+40;
+			temp1:=temp1-31;
+			if temp1<30 then
+				begin
+				if temp1-1-raznica>0 then
+				textBox8.Text := inttostr (temp1-1-raznica) + ' апреля.';
+				if temp1-1-raznica=0 then
+				textBox8.Text := '31 марта.';
+				if temp1-1-raznica<0 then
+				textBox8.Text := inttostr (31+(temp1-1-raznica)) + ' марта.';
+				textBox9.Text := inttostr (temp1-1) + ' апреля.';
+				end;
+			if temp1=30 then
+				begin
+				textBox8.Text := inttostr (30-1-raznica) + ' апреля.';
+				textBox9.Text := inttostr (30-1) + ' апреля.';
+				end;
+			if temp1>30 then
+				begin
+				if temp1-30=1 then
+					begin
+					textBox8.Text := inttostr (30-raznica) + ' апреля.';
+					textBox9.Text := '30 апреля.';
+					end
+				else
+					begin
+					if temp1-30-1-raznica>0 then
+					textBox8.Text := inttostr (temp1-30-1-raznica) + ' мая.';
+					if temp1-30-1-raznica=0 then
+					textBox8.Text := '30 апреля.';
+					if temp1-30-1-raznica<0 then
+					textBox8.Text := inttostr (30+(temp1-30-1-raznica)) + ' апреля.';
+					textBox9.Text := inttostr (temp1-30-1) + ' мая.';
+					end;
+				end;
+			temp2:=dg+50;
+			temp2:=temp2-31;
+			if temp2>30 then
+				begin
+				temp2:=temp2-30;
+				if temp2=1 then
+					begin
+					textBox10.Text := inttostr (30-raznica) + ' апреля.';
+					textBox11.Text := '30 апреля.';
+					end
+				else
+					begin
+					if temp2-1-raznica>0 then
+					textBox10.Text := inttostr (temp2-1-raznica) + ' мая.';
+					if temp2-1-raznica=0 then
+					textBox10.Text := '30 апреля.';
+					if temp2-1-raznica<0 then
+					textBox10.Text := inttostr (30+(temp2-1-raznica)) + ' апреля.';
+					textBox11.Text := inttostr (temp2-1) + ' мая.';
+					end;
+				end
+			else
+				begin
+				if temp2=30 then
+					begin
+					textBox10.Text := inttostr (30-1-raznica) + ' апреля.';
+					textBox11.Text := inttostr (30-1) + ' апреля.';
+					end
+				else
+					begin
+					if temp2-1-raznica>0 then
+					textBox10.Text := inttostr (temp2-1-raznica) + ' апреля.';
+					if temp2-1-raznica=0 then
+					textBox10.Text := '31 марта.';
+					if temp2-1-raznica<0 then
+					textBox10.Text := inttostr (31+(temp2-1-raznica)) + ' марта.';
+					textBox11.Text := inttostr (temp2-1) + ' апреля.';
+					end;
+				end;
+			temp2:=dg+50;
+			temp2:=temp2-31;
+			if temp2>30 then
+				begin
+				temp2:=temp2-30;
+				if temp2=1 then
+					begin
+					textBox10.Text := inttostr (30+(1-raznica)) + ' апреля.';
+					textBox11.Text := '1 мая.';
+					end
+				else
+					begin
+					if temp2-raznica>0 then
+					textBox10.Text := inttostr (temp2-raznica) + ' мая.';
+					if temp2-raznica=0 then
+					textBox10.Text := '30 апреля.';
+					if temp2-1-raznica<0 then
+					textBox10.Text := inttostr (30+(temp2-raznica)) + ' апреля.';
+					textBox11.Text := inttostr (temp2) + ' мая.';
+					end;
+				end
+			else
+				begin
+				if temp2=30 then
+					begin
+					textBox10.Text := inttostr (30-raznica) + ' апреля.';
+					textBox11.Text := inttostr (30) + ' апреля.';
+					end
+				else
+					begin
+					if temp2-raznica>0 then
+					textBox10.Text := inttostr (temp2-raznica) + ' апреля.';
+					if temp2-raznica=0 then
+					textBox10.Text := '31 марта.';
+					if temp2-raznica<0 then
+					textBox10.Text := inttostr (31+(temp2-raznica)) + ' марта.';
+					textBox11.Text := inttostr (temp2) + ' апреля.';
+					end;
+				end;
+			end;
+		end;
+  end
+  else
+    if (textBox1.Text = '') and (textBox2.Text = '') then
+      form(new Form4).Show
+    else
+      begin
+        if textBox1.Text = '' then
+          form(new Form2).Show;
+        if textBox2.Text = '' then
+          form(new Form3).Show;
+      end;
+end;
