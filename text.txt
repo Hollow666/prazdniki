@@ -21,7 +21,7 @@ begin
 	    textBox2.Text := 'Год не соответствует веку!';
 	  if vek < 16 then
 	    textBox1.Text := 'Век должен быть >=16!';
-  mod1:=(19*(god mod 19))+15;
+    mod1:=(19*(god mod 19))+15;
 	mod2:=mod1 mod 30;
 	a:=mod2;
 	mod3:=2*(god mod 4);
@@ -33,17 +33,17 @@ begin
 		begin
 		dy:=a+b-9;
 		textBox4.Text := inttostr (dy) + ' апреля.';
-		dg:=dy+raznica;
+		dg:=dy+raznica;#####
 		if dg>30 then
 			begin
 			dg:=dg-30;
-			textBox5.Text := inttostr (dg) + ' мая.';
+			textBox5.Text := inttostr (dg) + ' мая.';###
 			temp:=dg-7;
 			if temp=0 then
 				begin
-				textBox6.Text := inttostr (30-raznica) + ' апреля.';
-				textBox7.Text := '30 апреля.';
-				end;
+				textBox6.Text := inttostr (30-raznica) + ' апреля.';#####
+				textBox7.Text := '30 апреля.';######
+				end;3######
 			if temp<0 then
 				begin
 				textBox6.Text := inttostr (30+temp-raznica) + ' апреля.';
@@ -58,7 +58,7 @@ begin
 				if (temp-raznica)<0 then
 				textBox6.Text := inttostr (30+temp-raznica) + ' апреля.';
 				textBox7.Text := inttostr (temp) + ' мая.';
-				end;
+				end;#########
 			temp1:=dg+40;
 			temp1:=temp1-31;
 			if temp1<30 then
@@ -70,7 +70,7 @@ begin
 				if temp1-1-raznica<0 then
 				textBox8.Text := inttostr (31+(temp1-1-raznica)) + ' мая.';
 				textBox9.Text := inttostr (temp1-1) + ' июня.';
-				end;
+				end;#################
 			if temp1=30 then
 				begin
 				textBox8.Text := inttostr (30-1-raznica) + ' июня.';
@@ -114,7 +114,7 @@ begin
 					textBox10.Text := inttostr (30+(temp2-1-raznica)) + ' июня.';
 					textBox11.Text := inttostr (temp2-1) + ' июля.';
 					end;
-				end
+				end################
 			else
 				begin
 				if temp2=30 then
@@ -132,7 +132,7 @@ begin
 					textBox10.Text := inttostr (31+(temp2-1-raznica)) + ' мая.';
 					textBox11.Text := inttostr (temp2-1) + ' июня.';
 					end;
-				end;
+				end;#####################
 			temp2:=dg+50;
 			temp2:=temp2-31;
 			if temp2>30 then
@@ -140,7 +140,7 @@ begin
 				temp2:=temp2-30;
 				if temp2=1 then
 					begin
-					textBox12.Text := inttostr (30+(1-raznica)) + ' июня.';
+					textBox12.Text := inttostr (30+(1-raznica)) + ' июня.';#############
 					textBox13.Text := '1 июля.';
 					end
 				else
@@ -172,7 +172,7 @@ begin
 					textBox13.Text := inttostr (temp2) + ' июня.';
 					end;
 				end;
-			end
+			end !!!!!!!!!!!!#####################
 		else
 			begin
 			textBox5.Text := inttostr (dg) + ' апреля.';
